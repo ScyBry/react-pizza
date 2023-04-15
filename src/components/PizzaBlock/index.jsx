@@ -15,12 +15,11 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
               onClick={() => setActiveType(typeId)}
               className={activeType === typeId ? "active" : ""}
             >
-              
               {typesNames[typeId]}
             </li>
           ))}
         </ul>
-        <ul>j
+        <ul>
           {sizes.map((size, i) => (
             <li
               onClick={() => setActiveSize(i)}
@@ -32,8 +31,8 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
         </ul>
       </div>
       <div class="pizza-block__bottom">
-        <div class="pizza-block__price">{price}</div>
-        <button class="button button--outline button--add">
+        <div class="pizza-block__price">от {price} $</div>
+        <div class="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -48,7 +47,7 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
           </svg>
           <span>Добавить</span>
           <i>2</i>
-        </button>
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 function Sort() {
   const [open, setOpen] = React.useState(false);
   const list = ["пополурности", "цене", "алфавиту"];
+
   return (
     <div className="Sort">
       <div className="sort">
@@ -19,7 +20,9 @@ function Sort() {
         {open && (
           <div className="sort__popup">
             <ul>
-              {list.map}
+              {list.map((obj) => {
+                return <li>{obj}</li>;
+              })}
             </ul>
           </div>
         )}
