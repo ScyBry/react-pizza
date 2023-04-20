@@ -1,16 +1,21 @@
-import pizzaLogo from "./../img/pizza-logo.svg";
+import { NavLink } from 'react-router-dom';
+import Search from './Search';
+import pizzaLogo from './../img/pizza-logo.svg';
 
-function Header() {
+function Header({ searchValue, setSearchValue }) {
   return (
     <div class="header">
       <div class="container">
-        <div class="header__logo">
-          <img width="38" src={pizzaLogo} alt="Pizza logo" />
-          <div>
-            <h1>React Pizza</h1>
-            <p>самая вкусная пицца во вселенной</p>
+        <NavLink to="/">
+          <div class="header__logo">
+            <img width="38" src={pizzaLogo} alt="Pizza logo" />
+            <div>
+              <h1>React Pizza</h1>
+              <p>самая вкусная пицца во вселенной</p>
+            </div>
           </div>
-        </div>
+        </NavLink>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue}></Search>
         <div class="header__cart">
           <a href="/cart.html" class="button button--cart">
             <span>520 ₽</span>
@@ -20,8 +25,7 @@ function Header() {
               height="18"
               viewBox="0 0 18 18"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.33333 16.3333C7.06971 16.3333 7.66667 15.7364 7.66667 15C7.66667 14.2636 7.06971 13.6667 6.33333 13.6667C5.59695 13.6667 5 14.2636 5 15C5 15.7364 5.59695 16.3333 6.33333 16.3333Z"
                 stroke="white"
