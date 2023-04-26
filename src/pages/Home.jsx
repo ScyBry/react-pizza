@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { SearchContext } from '../App';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategoryId } from '../redux/slices/filterSlice';
 
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import PizzaBlock from '../components/PizzaBlock';
@@ -9,22 +11,19 @@ import Categories from '../components/Categories';
 import Pagination from '../components/Pagination';
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filter.categoryId);
+
   const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
-  const [sortType, setSortType] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [order, setOrder] = useState(0);
 
-  const pizzas = items
-    // .filter((obj) => {
-    //   if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-    //     return true;
-    //   }
-    //   return false;
-    // })
-    .map((obj) => <PizzaBlock key={obj.id} {...obj}></PizzaBlock>);
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
+
+  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj}></PizzaBlock>);
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
 
   useEffect(() => {
@@ -47,7 +46,7 @@ export default function Home() {
   return (
     <>
       <div className="content__top">
-        <Categories categoryId={categoryId} onClick={(i) => setCategoryId(i)} />
+        <Categories categoryId={categoryId} onClick={(i) => onChangeCategory(i)} />
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>

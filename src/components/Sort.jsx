@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 function Sort() {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const list = ['пополурности', 'цене', 'алфавиту'];
+  const list = [];
 
   return (
     <div className="Sort">
